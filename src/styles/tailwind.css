@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+li:focus-visible {
+  outline: none;
+}
+li:hover {
+  cursor: pointer;
+}
+@layer base {
+  :root {
+    /*------Color variables------*/
+    --amber_500: #ffbd08;
+    --amber_a400: #ffbf00;
+    --black_amp_white_white: #ffffff;
+    --black_900: #0f0f0f;
+    --black_900_01: #000b19;
+    --black_900_02: #000000;
+    --black_900_0c: #0000000c;
+    --black_900_33: #00000033;
+    --black_900_3f: #0000003f;
+    --blue_300: #55acee;
+    --blue_700: #3b88c3;
+    --blue_800: #174bbb;
+    --blue_gray_100: #d6d6d6;
+    --blue_gray_100_01: #ccd6dd;
+    --blue_gray_100_02: #d9d9d9;
+    --blue_gray_100_03: #d4d4d4;
+    --blue_gray_600: #627077;
+    --blue_gray_900: #1f164b;
+    --blue_gray_900_01: #2c2359;
+    --colors_indigo: #5856d6;
+    --deep_orange_400: #ff8a3b;
+    --deep_orange_900: #9e5200;
+    --deep_purple_50: #eceaf8;
+    --deep_purple_500: #5f4bbf;
+    --deep_purple_500_01: #5a48b4;
+    --deep_purple_500_02: #5c4aba;
+    --deep_purple_500_03: #5e4bbd;
+    --deep_purple_500_04: #5948b5;
+    --deep_purple_50_e5: #eceaf8e5;
+    --deep_purple_600: #4f22c8;
+    --deep_purple_a700: #7100da;
+    --deep_purple_a700_01: #7101d9;
+    --deep_purple_a700_02: #4311cd;
+    --gray_100: #f4f4f4;
+    --gray_200: #ececec;
+    --gray_200_01: #e8e8e8;
+    --gray_200_02: #eaeaea;
+    --gray_300: #dddddd;
+    --gray_300_01: #e5e5e5;
+    --gray_300_02: #dedede;
+    --gray_400: #c0c0c0;
+    --gray_400_01: #c6c6c6;
+    --gray_400_02: #bfbfbf;
+    --gray_400_03: #bcbcbc;
+    --gray_400_04: #c9c9c9;
+    --gray_400_05: #b6b6b6;
+    --gray_400_06: #afafaf;
+    --gray_400_33: #afafaf33;
+    --gray_500: #9e9e9e;
+    --gray_500_01: #9d9d9d;
+    --gray_500_7f: #8f8f8f7f;
+    --gray_600: #7d7d7d;
+    --gray_600_01: #838383;
+    --gray_700: #5a5a5a;
+    --gray_700_01: #5f5f5f;
+    --gray_700_02: #606060;
+    --gray_700_03: #545454;
+    --gray_700_04: #565656;
+    --gray_800: #4d4d4d;
+    --gray_800_01: #434343;
+    --gray_800_02: #4c4c4c;
+    --gray_800_03: #383838;
+    --gray_800_33: #4d4d4d33;
+    --gray_gray_400: #a0aec0;
+    --gray_gray_700: #2d3748;
+    --green_400: #49a677;
+    --green_a400: #00ff55;
+    --indigo_50: #e2e8f0;
+    --indigo_900: #362b6d;
+    --indigo_a200: #5079ff;
+    --indigo_a700: #344bfd;
+    --light_green_800: #487d20;
+    --lime_900: #7c4119;
+    --orange_a200: #ffac33;
+    --pink_900: #8d3434;
+    --red_200: #f4a79d;
+    --red_700: #bf4b4d;
+    --red_a100: #fa898b;
+    --red_a700: #ff0000;
+    --white_a700_7f: #ffffff7f;
+    --yellow_600: #ffdb2a;
+    --yellow_900: #f68d2b;
+
+    /*------Shadow variables------*/
+    --shadow-xs: 0 7px 23px 0 #0000000c;
+
+    /*------Border radius variables------*/
+    --radius-xs: 4px;
+    --radius-sm: 5px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 10px;
+    --radius-2xl: 12px;
+    --radius-3xl: 14px;
+    --radius-4xl: 16px;
+    --radius-5xl: 18px;
+    --radius-6xl: 20px;
+    --radius-7xl: 24px;
+    --radius-8xl: 28px;
+
+    /*------Spacing variables------*/
+    --space-xs: 0.25rem;
+    --space-sm: 0.38rem;
+    --space-md: 0.5rem;
+    --space-lg: 0.56rem;
+    --space-xl: 0.63rem;
+    --space-2xl: 0.75rem;
+    --space-3xl: 0.88rem;
+    --space-4xl: 0.94rem;
+    --space-5xl: 1rem;
+    --space-6xl: 1.13rem;
+    --space-7xl: 1.25rem;
+    --space-8xl: 1.5rem;
+    --space-9xl: 1.63rem;
+    --space-10xl: 1.75rem;
+    --space-11xl: 1.88rem;
+    --space-12xl: 2.13rem;
+    --space-13xl: 2.25rem;
+    --space-14xl: 2.5rem;
+    --space-15xl: 2.75rem;
+    --space-16xl: 3.13rem;
+  }
+  [type="text"],
+  input:where(:not([type])),
+  [type="email"],
+  [type="url"],
+  [type="password"],
+  [type="number"],
+  [type="date"],
+  [type="datetime-local"],
+  [type="month"],
+  [type="search"],
+  [type="tel"],
+  [type="time"],
+  [type="week"],
+  [multiple],
+  textarea,
+  select {
+    appearance: none;
+    background-color: transparent;
+    border-color: unset;
+    border-width: 0;
+    border-radius: unset;
+    padding: unset;
+    font-size: unset;
+    line-height: unset;
+  }
+
+  /* Override default focus colors for tailwindcss-forms https://github.com/tailwindlabs/tailwindcss-forms */
+  [type="text"]:focus,
+  [type="email"]:focus,
+  [type="url"]:focus,
+  [type="password"]:focus,
+  [type="number"]:focus,
+  [type="date"]:focus,
+  [type="search"]:focus,
+  [multiple]:focus,
+  textarea:focus,
+  select:focus {
+    --tw-ring-color: transparent;
+    border-color: transparent;
+  }
+  [type="radio"]:focus,
+  [type="checkbox"]:focus {
+    --tw-ring-color: transparent;
+  }
+}
+@layer components {
+  /*-------------------------------------
+  Container CSS
+--------------------------------------*/
+  .container-xs {
+    @apply w-full mx-auto max-w-[81.75rem];
+  }
+}
