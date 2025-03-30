@@ -1,4 +1,4 @@
-import { Button, Text, Img } from "../../components";
+import { Button, Text, Img } from "@/components";
 import LandingpagedGroup529 from "./Landingpaged";
 import Link from "next/link";
 import React from "react";

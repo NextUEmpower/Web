@@ -55,28 +55,10 @@ function BreadcrumbItem(props) {
   );
 }
 
-function Breadcrumb(props) {
-  const { separator, children, ...restProps } = props;
-  const count = React.Children.count(children);
+const Breadcrumb = () => {
+    return <div>Breadcrumb Component</div>;
+};
 
-  return (
-    <BreadcrumbContext.Provider value={{ separator }}>
-      <nav aria-label="Breadcrumb" {...restProps}>
-        <ol style={styles.list}>
-          {React.Children.map(children, (child, index) => {
-            const isCurrent = React.isValidElement(child) && (child.props.isCurrentPage ?? false);
-            const isLast = count === index + 1;
+export default Breadcrumb;
 
-            return (
-              <BreadcrumbItemContext.Provider value={{ isCurrent, isLast }} key={index}>
-                {child}
-              </BreadcrumbItemContext.Provider>
-            );
-          })}
-        </ol>
-      </nav>
-    </BreadcrumbContext.Provider>
-  );
-}
-
-export { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator };
+export { BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator };
