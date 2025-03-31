@@ -2,6 +2,7 @@
 
 import { Button, Input, Text, SelectBox, Img, Heading } from "../../components";
 import React from "react";
+import Link from "next/link";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -151,7 +152,7 @@ export default function ProfileTwoPage() {
           </div>
         </div>
         <div className="flex justify-end gap-[1.31rem]">
-          <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+          <Link href="/profilethree" target="_blank">
             <Button
               color="deep_purple_500"
               size="xl"
@@ -160,7 +161,7 @@ export default function ProfileTwoPage() {
             >
               Save and Next
             </Button>
-          </a>
+          </Link>
           <Button
             color="deep_purple_500"
             size="xl"

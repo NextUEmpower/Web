@@ -1,5 +1,6 @@
 import { Img, Button, Text, Heading } from "../../components";
 import React from "react";
+import Link from "next/link";
 
 export default function LandingpagedGroup529() {
   return (
@@ -25,11 +26,11 @@ export default function LandingpagedGroup529() {
             Lorem ipsum odor amet, consectetuer adipiscing elit. Non facilisis lectus habitant tortor eu vel. Donec
             facilisi magna senectus lectus.
           </Text>
-          <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+          <Link href="/signupd">
             <Button color="amber_A400" size="3xl" shape="round" className="min-w-[6.75rem] rounded px-[1.25rem]">
               Register
             </Button>
-          </a>
+          </Link>
         </div>
         <Img
           src="img_satisfied_lovel.png"

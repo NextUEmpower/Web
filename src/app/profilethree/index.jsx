@@ -2,6 +2,7 @@
 
 import { Button, Input, Text, SelectBox, Img, Heading } from "../../components";
 import React from "react";
+import Link from "next/link";
 
 const dropDownOptions = [
   { label: "Option1", value: "option1" },
@@ -149,6 +150,7 @@ export default function ProfileThreePage() {
           </div>
         </div>
         <div className="flex gap-[1.31rem]">
+          <Link href="/dashboard" target="_blank">
           <Button
             color="deep_purple_500"
             size="xl"
@@ -157,6 +159,7 @@ export default function ProfileThreePage() {
           >
             Save and Next
           </Button>
+          </Link>
           <Button
             color="deep_purple_500"
             size="xl"
@@ -165,11 +168,11 @@ export default function ProfileThreePage() {
           >
             Reset
           </Button>
-          <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+          <Link href="/dashboard" target="_blank">
             <Button color="red_700" size="xl" shape="round" className="min-w-[5.50rem] rounded-[5px] px-[1.13rem]">
               Submit
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

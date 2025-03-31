@@ -1,20 +1,21 @@
 import { Button, Text, Img, Heading } from "../../components";
 import React from "react";
+import Link from "next/link";
 
 export default function TestpagewoneGroup573() {
   return (
     <div className="mt-[1.88rem] flex w-full flex-col gap-[3.13rem] px-[2.75rem] md:px-[1.25rem]">
       <div className="ml-[0.75rem] flex flex-col items-start gap-[2.50rem] md:ml-0">
-        <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+        <Link href="/testpagew" target="_blank">
           <Button
             color="deep_purple_500"
             size="xl"
             shape="round"
             className="min-w-[5.25rem] rounded-[5px] px-[1.13rem]"
           >
-            Button
+            Back
           </Button>
-        </a>
+        </Link>
         <div className="flex self-stretch rounded-md bg-blue_gray-100_02">
           <div className="h-[0.75rem] w-[10%] rounded-md bg-deep_purple-500_01" />
         </div>
@@ -77,11 +78,11 @@ export default function TestpagewoneGroup573() {
         </div>
       </div>
       <div className="flex justify-end gap-[1.56rem]">
-        <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+        <Link href="/testpagewtwo" target="_blank">
           <Button color="deep_purple_500" size="3xl" shape="round" className="min-w-[10.00rem] rounded px-[1.25rem]">
             Save and Next
           </Button>
-        </a>
+        </Link>
         <Button color="deep_purple_500" size="3xl" shape="round" className="min-w-[5.38rem] rounded px-[1.25rem]">
           Reset
         </Button>

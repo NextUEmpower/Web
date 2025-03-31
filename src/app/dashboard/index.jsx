@@ -2,6 +2,7 @@
 
 import { Button, Img, Heading, Text } from "../../components";
 import Header from "../../components/Header";
+import Link from "next/link";
 import React from "react";
 import { TabPanel, TabList, Tab, Tabs } from "react-tabs";
 
@@ -106,11 +107,7 @@ export default function DashboardPage() {
                         </div>
                         <Heading as="p" className="text-justify text-[1.00rem] font-normal leading-[1.25rem]">
                           Lorem ipsum odor amet, consectetuer adipiscing elit. Magna varius vivamus molestie orci
-                          ridiculus consequat. Suspendisse est pharetra adipiscing netus libero himenaeos. Dis nunc
-                          natoque; tristique nostra dictum fringilla. Turpis vivamus efficitur; odio adipiscing ultrices
-                          habitasse fames. Ad finibus phasellus placerat, id maecenas vehicula interdum quisque tempus.
-                          Mi mus lectus, purus varius condimentum est. Praesent maecenas placerat habitant aenean,
-                          placerat quis enim. Vivamus lobortis dictum maecenas ac rutrum leo elit venenatis inceptos.
+                          ridiculus consequat. Suspendisse est pharetra adipiscing netus libero himenaeos.
                         </Heading>
                       </div>
                       <div className="flex flex-col items-start gap-[1.00rem] self-stretch">
@@ -118,19 +115,10 @@ export default function DashboardPage() {
                           Instructions
                         </Heading>
                         <Heading as="p" className="w-[90%] text-[1.00rem] font-normal leading-[1.25rem] md:w-full">
-                          <>
-                            Lorem ipsum odor amet, consectetuer adipiscing elit. <br />
-                            Magna varius vivamus molestie orci ridiculus consequat.
-                            <br />
-                            Suspendisse est pharetra adipiscing netus libero himenaeos. Dis nunc natoque; tristique
-                            nostra dictum fringilla. Turpis vivamus efficitur; odio adipiscing ultrices habitasse fames.
-                            <br /> Ad finibus phasellus placerat, id maecenas vehicula interdum quisque tempus
-                            <br />
-                            .Mi mus lectus, purus varius condimentum est. Praesent maecenas placerat habitant aenean,{" "}
-                          </>
+                          Lorem ipsum odor amet, consectetuer adipiscing elit.
                         </Heading>
                       </div>
-                      <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+                      <Link href="/testpagew">
                         <Button
                           color="light_green_800"
                           size="3xl"
@@ -148,7 +136,7 @@ export default function DashboardPage() {
                         >
                           Start the test
                         </Button>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </TabPanel>

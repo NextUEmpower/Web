@@ -16,7 +16,7 @@ export default function Header({ ...props }) {
         <div className="flex">
           <ul className="flex flex-wrap items-center gap-[1.50rem]">
             <li>
-              <Link href="#" className="text-shadow-ts flex items-center justify-center rounded-[5px] bg-yellow-600">
+              <Link href="/dashboardone" className="text-shadow-ts flex items-center justify-center rounded-[5px] bg-yellow-600">
                 <Heading
                   as="p"
                   className="px-[0.63rem] py-[0.25rem] text-[1.00rem] font-normal !text-deep_purple-a700_02"
@@ -26,7 +26,7 @@ export default function Header({ ...props }) {
               </Link>
             </li>
             <li>
-              <Link href="#" className="cursor-pointer">
+              <Link href="/career" className="cursor-pointer">
                 <Text
                   size="menu_text"
                   as="p"
@@ -37,7 +37,7 @@ export default function Header({ ...props }) {
               </Link>
             </li>
             <li>
-              <Link href="#" className="cursor-pointer">
+              <Link href="/elevate" className="cursor-pointer">
                 <Text
                   size="menu_text"
                   as="p"
@@ -48,7 +48,7 @@ export default function Header({ ...props }) {
               </Link>
             </li>
             <li>
-              <Link href="#" className="cursor-pointer">
+              <Link href="/community" className="cursor-pointer">
                 <Text
                   size="menu_text"
                   as="p"
@@ -66,7 +66,7 @@ export default function Header({ ...props }) {
               <Img src="img_vector.svg" width={24} height={26} />
             </Button>
           </Link>
-          <Link href="#">
+          <Link href="/college">
             <Img
               src="img_ellipse_990.png"
               width={40}

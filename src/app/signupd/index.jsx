@@ -1,6 +1,7 @@
 "use client";
 
 import { Heading, Button, Text, Switch, Input, Img } from "../../components";
+import Link from "next/link";
 import React from "react";
 
 export default function SignUpDPage() {
@@ -17,7 +18,7 @@ export default function SignUpDPage() {
                 alt="Header Logo"
                 className="h-[2.88rem] w-[8.63rem] object-contain"
               />
-              <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+              <Link href="/landingpaged">
                 <Button
                   color="amber_A400"
                   size="xl"
@@ -27,12 +28,12 @@ export default function SignUpDPage() {
                 >
                   Back
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </header>
         <div className="container-xs relative mt-[-9.25rem] flex flex-col items-center px-[3.50rem] md:px-[1.25rem]">
-          <div className="w-[28%] rounded-[14px] bg-black_amp_white-white py-[1.50rem] shadow-xs md:w-full sm:py-[1.25rem]">
+        <div className="w-[28%] rounded-[14px] bg-black_amp_white-white py-[1.50rem] shadow-xs md:w-full sm:py-[1.25rem]">
             <div className="flex flex-col items-center justify-center px-[1.13rem]">
               <div className="mx-[3.38rem] flex flex-col items-center self-stretch md:mx-0">
                 <Heading size="headingxl" as="h1" className="text-[1.13rem] font-bold !text-gray-800">
@@ -112,7 +113,7 @@ export default function SignUpDPage() {
                   Remember me{" "}
                 </Text>
               </div>
-              <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+              <Link href="/profile">
                 <Button
                   color="amber_500"
                   size="3xl"
@@ -121,11 +122,13 @@ export default function SignUpDPage() {
                 >
                   Sign Up
                 </Button>
-              </a>
+              </Link>
               <Heading size="headinglg" as="h3" className="mt-[1.38rem] text-[0.88rem] font-bold !text-gray-500">
                 <span className="font-normal text-gray-500">Already have an account?</span>
                 <span className="text-gray-500">&nbsp;</span>
-                <span className="text-amber-500">Sign in</span>
+                <Link href="/signind">
+                  <span className="text-amber-500">Sign in</span>
+                </Link>
               </Heading>
             </div>
           </div>

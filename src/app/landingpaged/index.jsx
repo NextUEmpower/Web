@@ -48,7 +48,7 @@ export default function LandingpageDPage() {
                 </li>
               </ul>
             </div>
-            <a href="https://www.youtube.com/embed/bv8Fxk0sz7I" target="_blank">
+            <Link href="/signind">
               <Button
                 color="amber_A400"
                 size="xl"
@@ -58,7 +58,18 @@ export default function LandingpageDPage() {
               >
                 Login
               </Button>
-            </a>
+            </Link>
+            <Link href="/signupd">
+              <Button
+                color="amber_A400"
+                size="xl"
+                variant="outline"
+                shape="round"
+                className="min-w-[4.63rem] rounded-md !border-[1.3px] px-[0.75rem]"
+              >
+                Register
+              </Button>
+            </Link>
           </div>
         </header>
       </div>
