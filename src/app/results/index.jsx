@@ -1,3 +1,5 @@
+"use client";
+
 import { Img, Text, BreadcrumbLink, Breadcrumb, BreadcrumbItem, Heading } from "../../components";
 import Header from "../../components/Header";
 import IntermediateProfile from "../../components/IntermediateProfile";

@@ -1,5 +1,7 @@
 import { Button, Text, Img, Heading } from "../../components";
 import React from "react";
+import Link from "next/link";
+
 
 export default function TestpagewtwoGroup577() {
   return (

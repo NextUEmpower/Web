@@ -59,6 +59,6 @@ const Breadcrumb = () => {
     return <div>Breadcrumb Component</div>;
 };
 
-export default Breadcrumb;
+export { Breadcrumb };
 
 export { BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator };

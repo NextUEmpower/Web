@@ -1,3 +1,5 @@
+"use client";
+
 import { Heading, Text, Img, BreadcrumbLink, Breadcrumb, BreadcrumbItem } from "../../components";
 import EventDetails from "../../components/EventDetails";
 import Header from "../../components/Header";
