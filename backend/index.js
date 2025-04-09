@@ -18,7 +18,6 @@ mongoose.connect(process.env.MONGO_URI, {
 const logger = require('./middleware/logger');
 const detailsRoutes = require('./routes/details');
 const dataRoutes = require('./routes/data');
-const authRoutes = require('./routes/auth');
 
 // Middleware
 app.use(cors({
@@ -32,7 +31,6 @@ app.use(express.json());
 // Routes
 app.use('/api', detailsRoutes);
 app.use('/api/data', dataRoutes);
-app.use('/api/auth', authRoutes);
 
 // Root route with detailed response
 app.get('/', (req, res) => {
@@ -44,8 +42,6 @@ app.get('/', (req, res) => {
       users: '/api/data/users',
       courses: '/api/data/courses',
       colleges: '/api/data/colleges',
-      signup: '/api/auth/signup',
-      login: '/api/auth/login'
     }
   });
 });

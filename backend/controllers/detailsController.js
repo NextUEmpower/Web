@@ -18,7 +18,6 @@ const mongoose = require('mongoose');
 
 exports.getAllDetails = async (req, res) => {
   try {
-    // Aggregate user-related details using $lookup
     const users = await User.aggregate([
       { $lookup: { from: "assessment_progress", localField: "_id", foreignField: "user_id", as: "assessment_progress" } },
       { $lookup: { from: "basic_info", localField: "_id", foreignField: "user_id", as: "basic_info" } },
@@ -31,7 +30,6 @@ exports.getAllDetails = async (req, res) => {
       { $lookup: { from: "post_likes", localField: "_id", foreignField: "user_id", as: "post_likes" } }
     ]);
 
-    // Fetch non-user-related collections
     const career = await Career.find();
     const colleges = await Colleges.find();
     const courses = await Courses.find();
