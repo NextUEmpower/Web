@@ -1,0 +1,44 @@
+{
+  "name": "nextu-application-1",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@dhiwise/react-switch": "^1.0.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "firebase": "^11.6.0",
+    "next": "^13.5.6",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-accessible-accordion": "^5.0.0",
+    "react-circular-progressbar": "^2.0.4",
+    "react-datepicker": "^4.25.0",
+    "react-dom": "^18.3.1",
+    "react-rating-stars-component": "^2.2.0",
+    "react-select": "^5.2.1",
+    "react-tabs": "^4.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.2",
+    "postcss": "8.4.8",
+    "prop-types": "^15.8.1",
+    "tailwindcss": "3.4.6"
+  }
+}
