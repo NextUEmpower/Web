@@ -29,7 +29,7 @@ export default function LoadingPage() {
     <div className="flex h-screen w-full flex-col items-center justify-center bg-gradient1">
       <div className="flex flex-col items-center">
         <Img
-          src="/img_header_logo.png"
+          src="img_header_logo.svg"
           width={200}
           height={66}
           alt="NextU Logo"

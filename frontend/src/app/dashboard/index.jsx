@@ -61,7 +61,7 @@ export default function DashboardPage() {
                           Intermediate
                         </Heading>
                         <Img
-                          src="img_iconoir_heart_solid_black_900_02_16x16.png"
+                          src="img_iconoir_heart_solid_black_900_02_16x16.svg"
                           width={16}
                           height={16}
                           alt="Iconoir Heart Solid"

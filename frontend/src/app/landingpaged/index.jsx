@@ -9,7 +9,7 @@ export default function LandingpageDPage() {
       <div className="container-xs mt-[1.63rem] md:px-[1.25rem]">
         <header className="flex items-center justify-between gap-[1.25rem] md:flex-col">
           <Img
-            src="img_header_logo.png"
+            src="img_header_logo.svg"
             width={138}
             height={46}
             alt="Header Logo"

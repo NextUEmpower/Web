@@ -33,7 +33,7 @@ export default function LandingpagedGroup529() {
           </Link>
         </div>
         <Img
-          src="img_satisfied_lovel.png"
+          src="img_satisfied_lovel.svg"
           width={496}
           height={662}
           alt="Satisfied Lovel"

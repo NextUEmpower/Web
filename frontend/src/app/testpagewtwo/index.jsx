@@ -29,7 +29,7 @@ export default function TestPageWTwoPage() {
           <div className="container-xs mb-[13.25rem] flex flex-col gap-[2.75rem] md:px-[1.25rem]">
             <div className="flex">
               <Img
-                src="img_images_2.png"
+                src="img_header_logo.svg"
                 width={138}
                 height={46}
                 alt="Images 2"

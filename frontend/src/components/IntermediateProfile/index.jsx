@@ -85,7 +85,7 @@ export default function IntermediateProfile({
                 {intermediate4}
               </Text>
               <Img
-                src="img_iconoir_heart_solid_black_900_02.png"
+                src="img_iconoir_heart_solid_black_900_02.svg"
                 width={14}
                 height={14}
                 alt="Iconoir Heart Solid"
@@ -282,7 +282,7 @@ export default function IntermediateProfile({
                         </div>
                         <div className="mr-[1.13rem] flex flex-col items-center rounded-[12px] bg-deep_purple-50_e5 p-[0.25rem] sm:mr-0">
                           <Img
-                            src="img_bi_person_fill_indigo_a700.png"
+                            src="img_bi_person_fill_indigo_a700.svg"
                             width={14}
                             height={14}
                             alt="Bi Person Fill"

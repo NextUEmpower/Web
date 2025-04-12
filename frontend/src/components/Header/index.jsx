@@ -6,7 +6,7 @@ export default function Header({ ...props }) {
   return (
     <header {...props} className={`${props.className} flex md:flex-col justify-between items-center gap-[1.25rem]`}>
       <Img
-        src="img_header_logo.png"
+        src="img_header_logo.svg"
         width={138}
         height={46}
         alt="Header Logo"
@@ -68,7 +68,7 @@ export default function Header({ ...props }) {
           </Link>
           <Link href="/college">
             <Img
-              src="img_ellipse_990.png"
+              src="img_ellipse_990.svg"
               width={40}
               height={40}
               alt="Ellipse 990"

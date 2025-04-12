@@ -170,7 +170,7 @@ export default function SignInDPage() {
           <div className="container-xs mb-[17.50rem] flex justify-center md:px-[1.25rem]">
             <div className="flex w-full items-center justify-between gap-[1.25rem]">
               <Img
-                src="/img_header_logo.png"
+                src="img_header_logo.svg"
                 width={138}
                 height={46}
                 alt="Header Logo"
@@ -283,7 +283,7 @@ export default function SignInDPage() {
               >
                 <div className="flex items-center justify-center gap-2">
                   <Img
-                    src="/img_google.png"
+                    src="img_google.svg"
                     width={20}
                     height={20}
                     alt="Google"

@@ -18,7 +18,7 @@ export default function ProfilePage() {
           <div className="container-xs mb-[2.88rem] flex flex-col items-start md:px-[1.25rem]">
             <div className="flex self-stretch">
               <Img
-                src="img_images_2.png"
+                src="img_header_logo.svg"
                 width={138}
                 height={46}
                 alt="Images 2"
@@ -139,7 +139,7 @@ export default function ProfilePage() {
                     shape="round"
                     indicator={
                       <Img
-                        src="img_left_gray_600_01.svg"
+                        src="img_checkmark.svg"
                         width={14}
                         height={16}
                         alt="Left"
