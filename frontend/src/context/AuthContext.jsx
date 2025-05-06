@@ -3,21 +3,25 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import axios from 'axios';
 
+// Use environment variables for Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyCxgbv_JIt-rItZH0-LjTk5P9e-CH_Hi2A",
-  authDomain: "nextu-c037a.firebaseapp.com",
-  projectId: "nextu-c037a",
-  storageBucket: "nextu-c037a.firebasestorage.app",
-  messagingSenderId: "375943913590",
-  appId: "1:375943913590:web:75fc94ebf10899ad8fff57",
-  measurementId: "G-564CT4N97V"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
+
+// Make sure API_URL is defined, with fallback
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
 const AuthContext = createContext();
 
@@ -27,18 +31,16 @@ export function AuthProvider({ children }) {
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
         setUser({
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName,
+          photoURL: firebaseUser.photoURL,
         });
-        localStorage.setItem('user', JSON.stringify(user));
       } else {
         setUser(null);
-        localStorage.removeItem('user');
       }
       setLoading(false);
     });
@@ -47,18 +49,50 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
+      // Step 1: Authenticate with Firebase
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      return { success: true, user: userCredential.user };
-    } catch (error) {
+      const firebaseUser = userCredential.user;
+      
+      try {
+        // Step 2: Validate user credentials against MongoDB
+        const response = await axios.get(`${API_URL}/data/users/email/${email}`, {
+          params: { password }
+        });
+        
+        if (response.data.success) {
+          // No need to set user here as the onAuthStateChanged hook will handle it
+          return { success: true, user: response.data.user };
+        } else {
+          // If MongoDB validation fails, sign out from Firebase
+          await signOut(auth);
+          return { success: false, error: response.data.error || "Invalid credentials" };
+        }
+      } catch (mongoError) {
+        console.error('MongoDB validation error:', mongoError);
+        
+        // If MongoDB validation fails, sign out from Firebase
+        await signOut(auth);
+        
+        let errorMessage = "Error validating credentials";
+        
+        if (mongoError.response) {
+          errorMessage = mongoError.response.data.error || errorMessage;
+        }
+        
+        return { success: false, error: errorMessage };
+      }
+    } catch (firebaseError) {
+      console.error('Firebase login error:', firebaseError);
+      
       let errorMessage = "Invalid email or password";
       
-      if (error.code === 'auth/user-not-found') {
+      if (firebaseError.code === 'auth/user-not-found') {
         errorMessage = "No account found with this email. Please sign up first.";
-      } else if (error.code === 'auth/wrong-password') {
+      } else if (firebaseError.code === 'auth/wrong-password') {
         errorMessage = "Incorrect password. Please try again.";
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (firebaseError.code === 'auth/invalid-email') {
         errorMessage = "Invalid email format.";
-      } else if (error.code === 'auth/too-many-requests') {
+      } else if (firebaseError.code === 'auth/too-many-requests') {
         errorMessage = "Too many failed login attempts. Please try again later.";
       }
       
@@ -68,41 +102,53 @@ export function AuthProvider({ children }) {
 
   const signup = async (name, email, password) => {
     try {
+      // Step 1: Create user in Firebase
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(userCredential.user, {
-        displayName: name
-      });
-      return { success: true, user: userCredential.user };
-    } catch (error) {
+      const firebaseUser = userCredential.user;
+      
+      try {
+        // Step 2: Store user data in MongoDB - using the /data/users/email/:email endpoint
+        console.log('Storing user data in MongoDB at:', `${API_URL}/data/users/email/${email}`);
+        const response = await axios.post(`${API_URL}/data/users/email/${email}`, {
+          name,
+          password,
+          firebaseUid: firebaseUser.uid
+        });
+        
+        if (response.data.success) {
+          // No need to set user here as the onAuthStateChanged hook will handle it
+          return { success: true, user: response.data.user };
+        } else {
+          // If MongoDB storage fails, delete the Firebase user
+          await firebaseUser.delete();
+          return { success: false, error: response.data.error || "Failed to create account" };
+        }
+      } catch (mongoError) {
+        console.error('MongoDB storage error:', mongoError);
+        
+        // If MongoDB storage fails, delete the Firebase user
+        await firebaseUser.delete();
+        
+        let errorMessage = "Failed to create account";
+        
+        if (mongoError.response) {
+          errorMessage = mongoError.response.data.error || `Server error (${mongoError.response.status})`;
+          console.error('Server response error details:', mongoError.response.data);
+        }
+        
+        return { success: false, error: errorMessage };
+      }
+    } catch (firebaseError) {
+      console.error('Firebase signup error:', firebaseError);
+      
       let errorMessage = "Failed to create account";
       
-      if (error.code === 'auth/email-already-in-use') {
+      if (firebaseError.code === 'auth/email-already-in-use') {
         errorMessage = "An account with this email already exists. Please sign in instead.";
-      } else if (error.code === 'auth/invalid-email') {
+      } else if (firebaseError.code === 'auth/invalid-email') {
         errorMessage = "Invalid email format.";
-      } else if (error.code === 'auth/operation-not-allowed') {
-        errorMessage = "Email/password accounts are not enabled. Please contact support.";
-      } else if (error.code === 'auth/weak-password') {
+      } else if (firebaseError.code === 'auth/weak-password') {
         errorMessage = "Password is too weak. Please use a stronger password.";
-      }
-      
-      return { success: false, error: errorMessage };
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      return { success: true, user: result.user };
-    } catch (error) {
-      let errorMessage = "Failed to sign in with Google";
-      
-      if (error.code === 'auth/popup-closed-by-user') {
-        errorMessage = "Sign-in was cancelled. Please try again.";
-      } else if (error.code === 'auth/popup-blocked') {
-        errorMessage = "Pop-up was blocked by your browser. Please allow pop-ups and try again.";
-      } else if (error.code === 'auth/account-exists-with-different-credential') {
-        errorMessage = "An account already exists with this email. Please sign in with your original method.";
       }
       
       return { success: false, error: errorMessage };
@@ -112,7 +158,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     try {
       await signOut(auth);
-      localStorage.removeItem('user');
+      setUser(null);
       router.push('/loading');
     } catch (error) {
       console.error('Logout error:', error);
@@ -120,7 +166,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, signInWithGoogle }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -3,17 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Img } from '../../components';
+import { useAuth } from '../../context/AuthContext';
 
 export default function LoadingPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
-    const checkAuthStatus = () => {
-      const storedUser = localStorage.getItem('user');
-      
+    const redirectUser = () => {
       setTimeout(() => {
-        if (storedUser) {
+        if (user) {
           router.push('/dashboard');
         } else {
           router.push('/landingpaged');
@@ -22,8 +22,8 @@ export default function LoadingPage() {
       }, 1500);
     };
 
-    checkAuthStatus();
-  }, [router]);
+    redirectUser();
+  }, [router, user]);
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center bg-gradient1">

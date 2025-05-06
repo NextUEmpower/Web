@@ -20,6 +20,98 @@ const AssessmentProgress = require('../models/AssessmentProgress');
 const BasicInfo = require('../models/BasicInfo');
 const Career = require('../models/Career');
 
+// POST endpoint to create a new user
+router.post('/users', async (req, res) => {
+  try {
+    const { name, email, password, firebaseUid } = req.body;
+    
+    if (!name || !email || !password) {
+      return res.status(400).json({ 
+        success: false, 
+        error: "Name, email, and password are required" 
+      });
+    }
+    
+    // Check if user already exists
+    const existingUser = await Users.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ 
+        success: false, 
+        error: "An account with this email already exists. Please sign in instead." 
+      });
+    }
+    
+    // Create new user
+    const newUser = new Users({
+      name,
+      email,
+      password,
+      firebaseUid // Store Firebase UID for reference
+    });
+    
+    const savedUser = await newUser.save();
+    
+    // Return success with user data (excluding password)
+    res.status(201).json({
+      success: true,
+      user: {
+        id: savedUser._id,
+        name: savedUser.name,
+        email: savedUser.email
+      }
+    });
+  } catch (error) {
+    console.error('Error creating user:', error);
+    res.status(500).json({ success: false, error: "Failed to create account" });
+  }
+});
+
+// GET endpoint to validate user by email and password
+router.get('/users/email/:email', async (req, res) => {
+  try {
+    const { email } = req.params;
+    const { password } = req.query;
+    
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        error: "Email and password are required"
+      });
+    }
+    
+    // Find user by email
+    const user = await Users.findOne({ email });
+    
+    if (!user) {
+      return res.status(404).json({ 
+        success: false, 
+        error: "No account found with this email. Please sign up first." 
+      });
+    }
+    
+    // Check password
+    if (user.password !== password) {
+      return res.status(401).json({ 
+        success: false, 
+        error: "Incorrect password. Please try again." 
+      });
+    }
+    
+    // Return success with user data (excluding password)
+    res.json({
+      success: true,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('Error validating user:', error);
+    res.status(500).json({ success: false, error: "Authentication error" });
+  }
+});
+
 // Route to get all data from all collections
 router.get('/all', async (req, res) => {
   try {
@@ -82,4 +174,4 @@ router.get('/:collection', async (req, res) => {
   }
 });
 
-module.exports = router; 
+module.exports = router;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Heading, Button, Text, Input, Img } from "../../components";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function SignInDPage() {
   const router = useRouter();
-  const { login, signInWithGoogle } = useAuth();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -128,41 +128,6 @@ export default function SignInDPage() {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    setError("");
-    setLoading(true);
-    try {
-      console.log("Attempting Google sign-in...");
-      const result = await signInWithGoogle();
-      console.log("Google sign-in result:", result);
-      
-      if (!result.success) {
-        // Check for specific error cases
-        if (result.error && result.error.includes("new email")) {
-          setError("This email is not registered. Please sign up first.");
-        } else if (result.error && result.error.includes("popup")) {
-          setError("Google sign-in popup was blocked. Please allow popups and try again.");
-        } else if (result.error && result.error.includes("cancelled")) {
-          setError("Google sign-in was cancelled. Please try again.");
-        } else if (result.error && result.error.includes("network")) {
-          setError("Network error. Please check your internet connection and try again.");
-        } else {
-          // Log the specific error for debugging
-          console.error("Google sign-in error:", result.error);
-          setError(`Google sign-in failed: ${result.error || "Unknown error"}`);
-        }
-      } else {
-        console.log("Google sign-in successful, redirecting to loading page");
-        router.push('/loading');
-      }
-    } catch (err) {
-      console.error("Google sign-in exception:", err);
-      setError(`Google sign-in error: ${err.message || "Please try again later"}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="w-full bg-gray-200_01">
       <div className="mb-[9.13rem] flex flex-col items-center">
@@ -264,33 +229,6 @@ export default function SignInDPage() {
                 disabled={loading}
               >
                 {loading ? "Signing in..." : "Sign In"}
-              </Button>
-              <div className="flex w-full items-center gap-2">
-                <div className="h-px flex-1 bg-gray-300"></div>
-                <Text size="texts" as="p" className="text-[0.56rem] font-normal !text-gray-500">
-                  OR
-                </Text>
-                <div className="h-px flex-1 bg-gray-300"></div>
-              </div>
-              <Button
-                type="button"
-                color="white_A700"
-                size="3xl"
-                shape="round"
-                className="self-stretch rounded border border-gray-300 px-[2.13rem] font-lexenddeca sm:px-[1.25rem]"
-                onClick={handleGoogleSignIn}
-                disabled={loading}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <Img
-                    src="img_google.svg"
-                    width={20}
-                    height={20}
-                    alt="Google"
-                    className="h-5 w-5"
-                  />
-                  <span>Sign in with Google</span>
-                </div>
               </Button>
               <Heading size="headingmd" as="h2" className="text-[0.69rem] font-bold !text-gray-500">
                 <span className="font-normal text-gray-500">Don't have an account?</span>

@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function SignUpDPage() {
   const router = useRouter();
-  const { signup, signInWithGoogle } = useAuth();
+  const { signup } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -185,41 +185,6 @@ export default function SignUpDPage() {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    setError("");
-    setLoading(true);
-    try {
-      console.log("Attempting Google sign-up...");
-      const result = await signInWithGoogle();
-      console.log("Google sign-up result:", result);
-      
-      if (!result.success) {
-        // Check for specific error cases
-        if (result.error && result.error.includes("existing email")) {
-          setError("This email is already registered. Please sign in instead.");
-        } else if (result.error && result.error.includes("popup")) {
-          setError("Google sign-up popup was blocked. Please allow popups and try again.");
-        } else if (result.error && result.error.includes("cancelled")) {
-          setError("Google sign-up was cancelled. Please try again.");
-        } else if (result.error && result.error.includes("network")) {
-          setError("Network error. Please check your internet connection and try again.");
-        } else {
-          // Log the specific error for debugging
-          console.error("Google sign-up error:", result.error);
-          setError(`Google sign-up failed: ${result.error || "Unknown error"}`);
-        }
-      } else {
-        console.log("Google sign-up successful, redirecting to loading page");
-        router.push('/loading');
-      }
-    } catch (err) {
-      console.error("Google sign-up exception:", err);
-      setError(`Google sign-up error: ${err.message || "Please try again later"}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="w-full bg-gray-200_01">
       <div className="mb-[9.13rem] flex flex-col items-center">
@@ -367,33 +332,6 @@ export default function SignUpDPage() {
                 disabled={loading}
               >
                 {loading ? "Signing up..." : "Sign Up"}
-              </Button>
-              <div className="flex w-full items-center gap-2">
-                <div className="h-px flex-1 bg-gray-300"></div>
-                <Text size="texts" as="p" className="text-[0.56rem] font-normal !text-gray-500">
-                  OR
-                </Text>
-                <div className="h-px flex-1 bg-gray-300"></div>
-              </div>
-              <Button
-                type="button"
-                color="white_A700"
-                size="3xl"
-                shape="round"
-                className="self-stretch rounded border border-gray-300 px-[2.13rem] font-lexenddeca sm:px-[1.25rem]"
-                onClick={handleGoogleSignIn}
-                disabled={loading}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <Img
-                    src="img_google.svg"
-                    width={20}
-                    height={20}
-                    alt="Google"
-                    className="h-5 w-5"
-                  />
-                  <span>Sign up with Google</span>
-                </div>
               </Button>
               <Heading size="headingmd" as="h2" className="text-[0.69rem] font-bold !text-gray-500">
                 <span className="font-normal text-gray-500">Already have an account?</span>
