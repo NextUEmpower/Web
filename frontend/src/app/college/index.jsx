@@ -1,10 +1,10 @@
 "use client";
 
-import { Heading, CheckBox, Input, Img, Button, Text } from "../../components";
-import Header from "../../components/Header";
-import { CloseSVG } from "../../components/Input/close";
-import UserProfile3 from "../../components/UserProfile3";
-import ChipView from "../../components/ChipView";
+import { Heading, CheckBox, Input, Img, Button, Text } from "components";
+import Header from "components/Header";
+import { CloseSVG } from "components/Input/close";
+import UserProfile3 from "components/UserProfile3";
+import ChipView from "components/ChipView";
 import React, { Suspense } from "react";
 
 const data = [

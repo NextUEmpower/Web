@@ -3,13 +3,10 @@ const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
-  // Remove experimental.serverActions as it's now enabled by default
+  // Remove deprecated experimental options
   webpack: (config) => {
-    // Add path aliases configuration for webpack
-    config.resolve.alias['@'] = path.join(__dirname, 'src');
-    config.resolve.alias['@components'] = path.join(__dirname, 'src/components');
-    config.resolve.alias['@context'] = path.join(__dirname, 'src/context');
-    config.resolve.alias['@styles'] = path.join(__dirname, 'src/styles');
+    // Add resolve.modules to help webpack find the components directory
+    config.resolve.modules.push(path.resolve('./src'));
     return config;
   },
   // This helps with static exports if needed
