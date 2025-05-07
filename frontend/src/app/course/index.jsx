@@ -1,9 +1,9 @@
 "use client";
 
-import { Heading, CheckBox, Input, Img, Button, Text } from "@/components";
-import CourseCourse from "@/components/CourseCourse";
-import Header from "@/components/Header";
-import { CloseSVG } from "@/components/Input/close";
+import { Heading, CheckBox, Input, Img, Button, Text } from "../../components";
+import CourseCourse from "../../components/CourseCourse";
+import Header from "../../components/Header";
+import { CloseSVG } from "../../components/Input/close";
 import CourseGroup684 from "./CourseGroup684";
 import React, { Suspense } from "react";
 
