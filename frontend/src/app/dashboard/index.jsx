@@ -1,7 +1,7 @@
 "use client";
 
-import { Button, Img, Heading, Text } from "../../components";
-import Header from "../../components/Header";
+import { Button, Img, Heading, Text } from "@/components";
+import Header from "@/components/Header";
 import Link from "next/link";
 import React from "react";
 import { TabPanel, TabList, Tab, Tabs } from "react-tabs";

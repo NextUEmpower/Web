@@ -1,9 +1,9 @@
 "use client";
 
-import { Heading, CheckBox, Input, Img, Button, Text } from "../../components";
-import Header from "../../components/Header";
-import { CloseSVG } from "../../components/Input/close";
-import UserProfile4 from "../../components/UserProfile4";
+import { Heading, CheckBox, Input, Img, Button, Text } from "@/components";
+import Header from "@/components/Header";
+import { CloseSVG } from "@/components/Input/close";
+import UserProfile4 from "@/components/UserProfile4";
 import CareerGroup675 from "./CareerGroup675";
 import React, { Suspense } from "react";
 
