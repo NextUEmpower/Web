@@ -1,9 +1,10 @@
 "use client";
 
-import { Heading, CheckBox, Input, Img, ChipView, Button, Text } from "../../components";
+import { Heading, CheckBox, Input, Img, Button, Text } from "../../components";
 import Header from "../../components/Header";
 import { CloseSVG } from "../../components/Input/close";
 import UserProfile3 from "../../components/UserProfile3";
+import ChipView from "../../components/ChipView";
 import React, { Suspense } from "react";
 
 const data = [
@@ -125,27 +126,20 @@ export default function CollegePage() {
                       placeholder={`Search Industry`}
                       value={searchBarValue16}
                       onChange={(e) => setSearchBarValue16(e.target.value)}
-                      prefix={
-                        <Img
-                          src="img_lucidesearch.svg"
-                          width={26}
+                      prefix={<Img
+                        src="img_lucidesearch.svg"
+                        width={26}
+                        height={26}
+                        alt="Lucide:search"
+                        className="h-[1.63rem] w-[1.63rem] object-contain" />}
+                      suffix={searchBarValue16?.length > 0 ? (
+                        <CloseSVG
+                          onClick={() => setSearchBarValue16("")}
                           height={26}
-                          alt="Lucide:search"
-                          className="h-[1.63rem] w-[1.63rem] object-contain"
-                        />
-                      }
-                      suffix={
-                        searchBarValue16?.length > 0 ? (
-                          <CloseSVG
-                            onClick={() => setSearchBarValue16("")}
-                            height={26}
-                            width={26}
-                            fillColor="#000000ff"
-                          />
-                        ) : null
-                      }
-                      className="flex-grow gap-[0.75rem] self-end rounded-[20px] !border text-black-900_02"
-                    />
+                          width={26}
+                          fillColor="#000000ff" />
+                      ) : null}
+                      className="flex-grow gap-[0.75rem] self-end rounded-[20px] !border text-black-900_02" />
                     <Button color="deep_purple_A700" size="6xl" className="w-[3.13rem] rounded-[24px] px-[0.63rem]">
                       <Img src="img_stash_arrow_right_solid.svg" width={26} height={26} />
                     </Button>
@@ -170,8 +164,7 @@ export default function CollegePage() {
                               width={20}
                               height={20}
                               alt="Ph:office-chair-fill"
-                              className="h-[1.25rem] w-[1.25rem]"
-                            />
+                              className="h-[1.25rem] w-[1.25rem]" />
                           </div>
                         ) : (
                           <div
@@ -184,8 +177,7 @@ export default function CollegePage() {
                               width={20}
                               height={20}
                               alt="Ph:office-chair-fill"
-                              className="h-[1.25rem] w-[1.25rem]"
-                            />
+                              className="h-[1.25rem] w-[1.25rem]" />
                           </div>
                         )}
                       </React.Fragment>
@@ -207,118 +199,99 @@ export default function CollegePage() {
             <div>
               <div className="flex flex-col gap-[1.25rem]">
                 <div className="flex flex-col items-start">
-                  <div className="mr-[0.63rem] flex items-center justify-between gap-[1.25rem] self-stretch md:mr-0">
-                    <Heading size="text6xl" as="h3" className="text-[1.13rem] font-medium">
-                      Sector
+                  <Heading size="text6xl" as="h3" className="text-[1.13rem] font-medium">
+                    Sector
+                  </Heading>
+                  <Img
+                    src="img_arrow_up_black_900_02.svg"
+                    width={18}
+                    height={18}
+                    alt="Arrow Up"
+                    className="h-[1.13rem]" />
+                </div>
+                <div className="mt-[0.75rem] flex flex-col items-start gap-[1.50rem] self-stretch">
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem7"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem6"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem5"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem4"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                </div>
+                <Heading as="h4" className="mt-[1.38rem] text-[1.00rem] font-medium !text-indigo-a200">
+                  More
+                </Heading>
+                <div className="mt-[1.00rem] h-[0.06rem] w-full self-stretch bg-black-900_02" />
+              </div>
+              <div className="flex flex-col gap-[3.25rem] sm:gap-[1.63rem]">
+                <div className="flex flex-col gap-[2.25rem]">
+                  <div className="flex items-center justify-between gap-[1.25rem]">
+                    <Heading size="text6xl" as="h5" className="text-[1.13rem] font-medium">
+                      Industry
                     </Heading>
                     <Img
                       src="img_arrow_up_black_900_02.svg"
                       width={18}
                       height={18}
                       alt="Arrow Up"
-                      className="h-[1.13rem]"
-                    />
+                      className="h-[1.13rem]" />
                   </div>
-                  <div className="mt-[0.75rem] flex flex-col items-start gap-[1.50rem] self-stretch">
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem7"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem6"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem5"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem4"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                  </div>
-                  <Heading as="h4" className="mt-[1.38rem] text-[1.00rem] font-medium !text-indigo-a200">
-                    More
-                  </Heading>
-                  <div className="mt-[1.00rem] h-[0.06rem] w-full self-stretch bg-black-900_02" />
+                  <Input
+                    color="black_900_02"
+                    size="lg"
+                    name="Frame 119"
+                    placeholder={`Search Industry`}
+                    value={searchBarValue15}
+                    onChange={(e) => setSearchBarValue15(e.target.value)}
+                    prefix={<Img
+                      src="img_lucidesearch.svg"
+                      width={26}
+                      height={26}
+                      alt="Lucide:search"
+                      className="h-[1.63rem] w-[1.63rem] object-contain" />}
+                    suffix={searchBarValue15?.length > 0 ? (
+                      <CloseSVG
+                        onClick={() => setSearchBarValue15("")}
+                        height={26}
+                        width={26}
+                        fillColor="#000000ff" />
+                    ) : null}
+                    className="gap-[0.75rem] rounded-[28px] !border text-black-900_02" />
                 </div>
-                <div className="flex flex-col gap-[3.25rem] sm:gap-[1.63rem]">
-                  <div className="flex flex-col gap-[2.25rem]">
-                    <div className="flex items-center justify-between gap-[1.25rem]">
-                      <Heading size="text6xl" as="h5" className="text-[1.13rem] font-medium">
-                        Industry
-                      </Heading>
-                      <Img
-                        src="img_arrow_up_black_900_02.svg"
-                        width={18}
-                        height={18}
-                        alt="Arrow Up"
-                        className="h-[1.13rem]"
-                      />
-                    </div>
-                    <Input
-                      color="black_900_02"
-                      size="lg"
-                      name="Frame 119"
-                      placeholder={`Search Industry`}
-                      value={searchBarValue15}
-                      onChange={(e) => setSearchBarValue15(e.target.value)}
-                      prefix={
-                        <Img
-                          src="img_lucidesearch.svg"
-                          width={26}
-                          height={26}
-                          alt="Lucide:search"
-                          className="h-[1.63rem] w-[1.63rem] object-contain"
-                        />
-                      }
-                      suffix={
-                        searchBarValue15?.length > 0 ? (
-                          <CloseSVG
-                            onClick={() => setSearchBarValue15("")}
-                            height={26}
-                            width={26}
-                            fillColor="#000000ff"
-                          />
-                        ) : null
-                      }
-                      className="gap-[0.75rem] rounded-[28px] !border text-black-900_02"
-                    />
-                  </div>
-                  <div className="flex flex-col items-start gap-[1.50rem]">
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem3"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem2"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem1"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                    <CheckBox
-                      name="Filtering Item"
-                      label="Filtering Item"
-                      id="FilteringItem"
-                      className="gap-[0.63rem] text-[1.00rem] text-black-900_02"
-                    />
-                  </div>
+                <div className="flex flex-col items-start gap-[1.50rem]">
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem3"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem2"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem1"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
+                  <CheckBox
+                    name="Filtering Item"
+                    label="Filtering Item"
+                    id="FilteringItem"
+                    className="gap-[0.63rem] text-[1.00rem] text-black-900_02" />
                 </div>
               </div>
             </div>

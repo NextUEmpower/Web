@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-import SwitchProvider from "@dhiwise/react-switch";
+import ReactSwitch from "react-switch"; // Changed from @dhiwise/react-switch to react-switch
 import PropTypes from "prop-types";
 
 const variants = {
@@ -34,7 +34,7 @@ const Switch = ({
   };
   return (
     <div className={className}>
-      <SwitchProvider
+      <ReactSwitch
         checked={selected}
         onChange={handleChange}
         {...variants[variant]}
