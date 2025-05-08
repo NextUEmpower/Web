@@ -3,10 +3,17 @@ const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
-  // This will ensure that your component imports work correctly
-  transpilePackages: [],
-  // Set output to standalone for better hosting compatibility
   output: 'standalone',
+  webpack: (config) => {
+    // Add aliases to help webpack find your modules
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@components': path.join(__dirname, 'src/components'),
+      '@styles': path.join(__dirname, 'src/styles'),
+      '@context': path.join(__dirname, 'src/context'),
+    };
+    return config;
+  },
 };
 
 module.exports = nextConfig;
