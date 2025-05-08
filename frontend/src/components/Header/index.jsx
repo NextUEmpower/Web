@@ -63,7 +63,13 @@ export default function Header({ ...props }) {
         <div className="flex gap-[1.75rem]">
           <Link href="#">
             <Button color="yellow_600" size="4xl" shape="circle" className="w-[2.50rem] rounded-[20px] px-[0.38rem]">
-              <Img src="img_vector.svg" width={24} height={26} />
+              <Img 
+                src="img_vector.svg" 
+                width={24} 
+                height={24} 
+                alt="Vector icon"
+                style={{ height: 'auto' }}
+              />
             </Button>
           </Link>
           <Link href="/college">

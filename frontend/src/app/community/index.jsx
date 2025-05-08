@@ -1,10 +1,10 @@
 "use client";
 
-import { Heading, Text, Img, BreadcrumbLink, Breadcrumb, BreadcrumbItem } from "components";
-import EventDetails from "components/EventDetails";
-import Header from "components/Header";
-import IntermediateProfile from "components/IntermediateProfile";
-import UserProfile2 from "components/UserProfile2";
+import { Heading, Text, Img, BreadcrumbLink, Breadcrumb, BreadcrumbItem } from "../../components";
+import EventDetails from "../../components/EventDetails";
+import Header from "../../components/Header";
+import IntermediateProfile from "../../components/IntermediateProfile";
+import UserProfile2 from "../../components/UserProfile2";
 import Link from "next/link";
 import React, { Suspense } from "react";
 
